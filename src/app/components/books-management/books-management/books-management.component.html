@@ -1,0 +1,68 @@
+
+<main>
+    <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+        <div class="bg-white">
+            <form>
+                <div class="mb-3 flex flex-row">
+                    <div class="basis-1/2">
+                        <div class="w-1/2">
+                            <input
+                            id="table-complete-search"
+                            type="text"
+                            class="form-control w-full"
+                            name="searchTerm"
+                            placeholder="Filter"
+                            [(ngModel)]="service.searchTerm"
+                        />
+                        </div>
+                    </div>
+                    <div class="basis-1/2 flex justify-end">
+                        <button class="rounded-md bg-gray-700 px-4 py-2 text-sm font-semibold text-gray-300 hover:text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-700">
+                            Add Book
+                        </button>
+                    </div>
+                    <span class="col col-form-label" *ngIf="service.loading$ | async">Loading...</span>
+                </div>
+
+                <table class="w-full border border-slate-400">
+                    <thead class="bg-gray-800 text-gray-300">
+                        <tr>
+                            <th class="py-3 px-2" sortable="Name" >Name</th>
+                            <th class="py-2 px-2" sortable="Cover">Cover</th>
+                            <th class="py-2 px-2 " sortable="Author">Author</th>
+                            <th class="py-2 px-2 " sortable="Topic">Topic</th>
+                            <th class="py-2 px-2 " sortable="Type">Type</th>
+                            <th class="py-2 px-2 " sortable="Link">Link</th>
+                            <th class="py-2 px-2 " sortable="Section">Section</th>
+                            <th class="py-2 px-2 " sortable="Description">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let book of books$ | async">
+                            <td class="py-2 px-2 border border-slate-400"><ngb-highlight [result]="book.Name" [term]="service.searchTerm"></ngb-highlight></td>
+                            <td class="py-2 px-2 border border-slate-400"><ngb-highlight [result]="book.Cover" [term]="service.searchTerm"></ngb-highlight></td>
+                            <td class="py-2 px-2 border border-slate-400"><ngb-highlight [result]="book.Author" [term]="service.searchTerm"></ngb-highlight></td>
+                            <td class="py-2 px-2 border border-slate-400"><ngb-highlight [result]="book.Topic" [term]="service.searchTerm"></ngb-highlight></td>
+                            <td class="py-2 px-2 border border-slate-400"><ngb-highlight [result]="book.Type" [term]="service.searchTerm"></ngb-highlight></td>
+                            <td class="py-2 px-2 border border-slate-400"><ngb-highlight [result]="book.Link" [term]="service.searchTerm"></ngb-highlight></td>
+                            <td class="py-2 px-2 border border-slate-400"><ngb-highlight [result]="book.Section" [term]="service.searchTerm"></ngb-highlight></td>
+                            <td class="py-2 px-2 border border-slate-400"><ngb-highlight [result]="book.Description" [term]="service.searchTerm"></ngb-highlight></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="d-flex justify-content-between p-2">
+                    <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+                    </ngb-pagination>
+
+                    <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+                        <option [ngValue]="10">10 items per page</option>
+                        <option [ngValue]="15">15 items per page</option>
+                        <option [ngValue]="25">25 items per page</option>
+                        <option [ngValue]="50">30 items per page</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>

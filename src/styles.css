@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ngb-carousel {
+    height: 600px;
+}
+ngb-carousel .picsum-img-wrapper {
+	position: relative;
+	height: 0;
+    height: 600px;
+}
+
+ngb-carousel .picsum-img-wrapper > img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+    height: 600px;
+    width: 100%;
+}
