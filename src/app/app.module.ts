@@ -13,6 +13,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterComponent } from './layouts/footer/footer/footer.component';
 import { BooksManagementComponent } from './components/books-management/books-management/books-management.component';
 import { FormsModule } from '@angular/forms';
+import { MHussainCampusComponent } from './components/m.hussain-campus/m.hussain-campus.component';
+import { AlSadeedCampusComponent } from './components/al-sadeed-campus/al-sadeed-campus.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MoazzamCollegeComponent } from './components/moazzam-college/moazzam-college.component';
+import { LibraryComponent } from './components/library/library.component';
+import { DirectionSchoolComponent } from './components/direction-school/direction-school.component';
+import { BookDetailsComponent } from './components/books/book-details/book-details.component';
+
 
 @NgModule({
   declarations: [
@@ -25,12 +33,21 @@ import { FormsModule } from '@angular/forms';
     AboutComponent,
     FooterComponent,
     BooksManagementComponent,
+    MHussainCampusComponent,
+    AlSadeedCampusComponent,
+
+    MoazzamCollegeComponent,
+    LibraryComponent,
+    DirectionSchoolComponent,
+    BookDetailsComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

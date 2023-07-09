@@ -7,6 +7,7 @@ import { Book } from '../models/book';
 import { DecimalPipe } from '@angular/common';
 import { debounceTime, delay, switchMap, tap } from 'rxjs/operators';
 import { SortColumn, SortDirection } from './sortable.directive';
+import { HttpClient } from '@angular/common/http';
 const compare = (v1: string | number, v2: string | number) => (v1 < v2 ? -1 : v1 > v2 ? 1 : 0);
 
 function sort(books: Book[], column: SortColumn, direction: string): Book[] {
@@ -21,10 +22,11 @@ function sort(books: Book[], column: SortColumn, direction: string): Book[] {
 }
 
 function matches(book: Book, term: string) {
+	debugger
 	return (
-		book.Name.toLowerCase().includes(term.toLowerCase()) ||
-    book.Author.toLowerCase().includes(term.toLowerCase()) ||
-    book.Topic.toLowerCase().includes(term.toLowerCase())
+		book.name.toLowerCase().includes(term.toLowerCase()) ||
+		book.author.toLowerCase().includes(term.toLowerCase()) ||
+		book.topic.toLowerCase().includes(term.toLowerCase())
 	);
 }
 
@@ -32,7 +34,9 @@ function matches(book: Book, term: string) {
   providedIn: 'root'
 })
 export class BooksService {
-  private _loading$ = new BehaviorSubject<boolean>(true);
+	books:Book[] = [];
+	private baseUrl = 'http://localhost:3000';
+  	private _loading$ = new BehaviorSubject<boolean>(true);
 	private _search$ = new Subject<void>();
 	private _books$ = new BehaviorSubject<Book[]>([]);
 	private _total$ = new BehaviorSubject<number>(0);
@@ -44,7 +48,8 @@ export class BooksService {
 		sortColumn: '',
 		sortDirection: '',
 	};
-  constructor() {
+  constructor(private http: HttpClient,) {
+	
 		this._search$
 			.pipe(
 				tap(() => this._loading$.next(true)),
@@ -61,7 +66,17 @@ export class BooksService {
 		this._search$.next();
 	}
 
-  get books$() {
+	getBooks(): Observable<Book[]> {
+		return this.http.get<Book[]>(this.baseUrl + '/books')
+	}
+	getBookById(id:number): Observable<Book> {
+		return this.http.get<Book>(this.baseUrl + '/books/'+id)
+	}
+
+  	get books$() {
+		this.http.get<Book[]>(this.baseUrl + '/books').subscribe((res:any)=>{
+			this.books = res;
+		})
 		return this._books$.asObservable();
 	}
 	get total$() {
@@ -105,8 +120,8 @@ export class BooksService {
 		const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
 
 		// 1. sort
-		let countries = sort(BOOKS, sortColumn, sortDirection);
-
+		let countries = sort(this.books, sortColumn, sortDirection);
+		debugger
 		// 2. filter
 		countries = countries.filter((country) => matches(country, searchTerm));
 		const total = countries.length;
@@ -120,19 +135,44 @@ export class BooksService {
 
 
 
-export const BOOKS: Book[] = [
-	{
-		Name: 'Russia',
+export const BOOKS: any[] = [
+	{	
+		Id:1,
+		Name: 'eng',
 		Author: 'f/f3/Flag_of_Russia.svg',
 		Cover: 'Temp',
 		Topic: 'Temp',
-    Section : 'Books',
-    Type: 'Temp',
-    Link: '',
-    Description: 'Empty'
+		Section : 'Books',
+		Type: 'Temp',
+		Link: '',
+		Description: 'Empty'
 	},
-  {
-		Name: 'USA',
+  	{
+		
+		Id:2,
+		Name: 'urdu',
+		Author: 'f/f3/Flag_of_Russia.svg',
+		Cover: 'Temp',
+		Topic: 'USD',
+		Section : 'Books',
+		Type: 'Temp',
+		Link: '',
+		Description: 'Empty'
+	},
+  	{	
+		Id:3,
+		Name: 'math',
+		Author: 'f/f3/Flag_of_Russia.svg',
+		Cover: 'Temp',
+		Topic: 'Temp',
+		Section : 'Books',
+		Type: 'Temp',
+		Link: '',
+		Description: 'Empty'
+	},
+  	{	
+		Id:4,
+		Name: 'phys',
 		Author: 'f/f3/Flag_of_Russia.svg',
 		Cover: 'Temp',
 		Topic: 'USD',
@@ -141,8 +181,9 @@ export const BOOKS: Book[] = [
     Link: '',
     Description: 'Empty'
 	},
-  {
-		Name: 'Russia',
+  {	
+	Id:5,
+		Name: 'chem',
 		Author: 'f/f3/Flag_of_Russia.svg',
 		Cover: 'Temp',
 		Topic: 'Temp',
@@ -151,8 +192,9 @@ export const BOOKS: Book[] = [
     Link: '',
     Description: 'Empty'
 	},
-  {
-		Name: 'USA',
+  {	
+	Id:7,
+		Name: 'isl',
 		Author: 'f/f3/Flag_of_Russia.svg',
 		Cover: 'Temp',
 		Topic: 'USD',
@@ -161,8 +203,9 @@ export const BOOKS: Book[] = [
     Link: '',
     Description: 'Empty'
 	},
-  {
-		Name: 'Russia',
+  {	
+	Id:8,
+		Name: 'comp',
 		Author: 'f/f3/Flag_of_Russia.svg',
 		Cover: 'Temp',
 		Topic: 'Temp',
@@ -171,8 +214,9 @@ export const BOOKS: Book[] = [
     Link: '',
     Description: 'Empty'
 	},
-  {
-		Name: 'USA',
+  {	
+	Id:9,
+		Name: 'bio',
 		Author: 'f/f3/Flag_of_Russia.svg',
 		Cover: 'Temp',
 		Topic: 'USD',
@@ -181,8 +225,9 @@ export const BOOKS: Book[] = [
     Link: '',
     Description: 'Empty'
 	},
-  {
-		Name: 'Russia',
+  {	
+	Id:10,
+		Name: 'c',
 		Author: 'f/f3/Flag_of_Russia.svg',
 		Cover: 'Temp',
 		Topic: 'Temp',
@@ -191,8 +236,9 @@ export const BOOKS: Book[] = [
     Link: '',
     Description: 'Empty'
 	},
-  {
-		Name: 'USA',
+  {	
+	Id:11,
+		Name: 'dld',
 		Author: 'f/f3/Flag_of_Russia.svg',
 		Cover: 'Temp',
 		Topic: 'USD',
@@ -201,8 +247,9 @@ export const BOOKS: Book[] = [
     Link: '',
     Description: 'Empty'
 	},
-  {
-		Name: 'Russia',
+  {	
+	Id:12,
+		Name: 'algo',
 		Author: 'f/f3/Flag_of_Russia.svg',
 		Cover: 'Temp',
 		Topic: 'Temp',
@@ -211,8 +258,9 @@ export const BOOKS: Book[] = [
     Link: '',
     Description: 'Empty'
 	},
-  {
-		Name: 'USA',
+  {	
+	Id:13,
+		Name: 'coal',
 		Author: 'f/f3/Flag_of_Russia.svg',
 		Cover: 'Temp',
 		Topic: 'USD',
@@ -221,8 +269,9 @@ export const BOOKS: Book[] = [
     Link: '',
     Description: 'Empty'
 	},
-  {
-		Name: 'Russia',
+  {	
+	Id:14,
+		Name: 'la',
 		Author: 'f/f3/Flag_of_Russia.svg',
 		Cover: 'Temp',
 		Topic: 'Temp',
@@ -231,8 +280,9 @@ export const BOOKS: Book[] = [
     Link: '',
     Description: 'Empty'
 	},
-  {
-		Name: 'USA',
+  {	
+	Id:15,
+		Name: 'ai',
 		Author: 'f/f3/Flag_of_Russia.svg',
 		Cover: 'Temp',
 		Topic: 'USD',
@@ -241,8 +291,9 @@ export const BOOKS: Book[] = [
     Link: '',
     Description: 'Empty'
 	},
-  {
-		Name: 'Russia',
+  {	
+	Id:16,
+		Name: 'cloud',
 		Author: 'f/f3/Flag_of_Russia.svg',
 		Cover: 'Temp',
 		Topic: 'Temp',
@@ -252,7 +303,9 @@ export const BOOKS: Book[] = [
     Description: 'Empty'
 	},
   {
-		Name: 'USA',
+		
+	Id:17,
+		Name: 'cc',
 		Author: 'f/f3/Flag_of_Russia.svg',
 		Cover: 'Temp',
 		Topic: 'USD',
@@ -261,8 +314,9 @@ export const BOOKS: Book[] = [
     Link: '',
     Description: 'Empty'
 	},
-  {
-		Name: 'Russia',
+  {	
+	Id:18,
+		Name: 'ecom',
 		Author: 'f/f3/Flag_of_Russia.svg',
 		Cover: 'Temp',
 		Topic: 'Temp',
@@ -271,8 +325,9 @@ export const BOOKS: Book[] = [
     Link: '',
     Description: 'Empty'
 	},
-  {
-		Name: 'USA',
+  {	
+	Id:19,
+		Name: 'web',
 		Author: 'f/f3/Flag_of_Russia.svg',
 		Cover: 'Temp',
 		Topic: 'USD',
@@ -281,8 +336,9 @@ export const BOOKS: Book[] = [
     Link: '',
     Description: 'Empty'
 	},
-  {
-		Name: 'Russia',
+  {	
+	Id:20,
+		Name: 'python',
 		Author: 'f/f3/Flag_of_Russia.svg',
 		Cover: 'Temp',
 		Topic: 'Temp',
@@ -291,28 +347,9 @@ export const BOOKS: Book[] = [
     Link: '',
     Description: 'Empty'
 	},
-  {
-		Name: 'USA',
-		Author: 'f/f3/Flag_of_Russia.svg',
-		Cover: 'Temp',
-		Topic: 'USD',
-    Section : 'Books',
-    Type: 'Temp',
-    Link: '',
-    Description: 'Empty'
-	},
-  {
-		Name: 'Russia',
-		Author: 'f/f3/Flag_of_Russia.svg',
-		Cover: 'Temp',
-		Topic: 'Temp',
-    Section : 'Books',
-    Type: 'Temp',
-    Link: '',
-    Description: 'Empty'
-	},
-  {
-		Name: 'USA',
+  {	
+	Id:21,
+		Name: 'math1',
 		Author: 'f/f3/Flag_of_Russia.svg',
 		Cover: 'Temp',
 		Topic: 'USD',

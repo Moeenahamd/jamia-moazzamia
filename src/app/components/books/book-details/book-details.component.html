@@ -1,0 +1,36 @@
+
+
+<header class="bg-white shadow">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Book Detail</h1>
+    </div>
+</header>
+<main>
+    <div class="container flex py-10 mx-auto flex-wrap">
+        <div class="  w-full lg:w-6/12 order-first p-5 sm:w-full md:w-full xl:w-6/12" >
+            <img src="{{book.cover}}" class="relative w-full rounded-lg " alt="hidden" />
+        </div>
+        <div class="lg:w-6/12 order-last p-5 " data-aos="fade-right " data-aos-duration="1000">
+            <h1 class="font-bold text-3xl text-gray-900"> {{book.name}}</h1>
+            <h2 class="text-gray-500 text-lg font-bold pt-2">Author: {{book.author}}</h2>  
+            <h2 class="text-gray-500 text-lg font-bold">Topic: {{book.topic}}</h2>   
+            <h2 class="text-gray-900 text-lg font-bold pt-4">Description:</h2>  
+            <p class="pt-1 text-md">
+                "1984" by George Orwell is a dystopian novel published in 1949. 
+                The story is set in a future society ruled by a totalitarian Party, 
+                led by Big Brother. Winston Smith, a Party member, rebels against the 
+                oppressive regime, navigating a world of surveillance, propaganda, and
+                 thought control. His forbidden relationship with Julia adds another layer
+                  of danger to his defiance. As they strive for individual freedom, they 
+                  face betrayal and manipulation. The novel delves into themes of authoritarianism
+                  , propaganda, manipulation, and the consequences of constant surveillance. 
+                  It serves as a stark warning about unchecked government control and the loss of personal 
+                  liberties. "1984" remains a captivating and influential work, critiquing oppressive political
+                   systems and highlighting the importance of individual freedom.
+            </p>
+            <button class=" mt-4 bg-gray-900 px-4 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-700">
+                Download Book
+            </button>
+        </div>
+    </div>
+</main>

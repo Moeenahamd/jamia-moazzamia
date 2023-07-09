@@ -1,10 +1,11 @@
 export interface Book {
-	Name: string;
-	Cover: string;
-	Author: string;
-	Topic: string;
-	Type: string;
-	Link: string;
-	Section: string;
-	Description: string;
+	id: number;
+	name: string;
+	cover: string;
+	author: string;
+	topic: string;
+	type: string;
+	link: string;
+	section: string;
+	description: string;
 }

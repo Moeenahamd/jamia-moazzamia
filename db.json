@@ -1,0 +1,138 @@
+{
+  "books": [
+    {	
+      "id":1,
+      "name": "1984 George Orwell",
+      "author": "George Orwell",
+      "cover": "assets/images/book2.png",
+      "topic": "Temp",
+      "section" : "Books",
+      "type": "Temp",
+      "link": "",
+      "description": "Empty"
+    },
+      {
+      
+      "id":2,
+      "name": "Himself",
+      "author": "Jess Kidd",
+      "cover": "https://offtheshelf.b-cdn.net/app/uploads/2017/10/Himself.jpg",
+      "topic": "Temp",
+      "section" : "Books",
+      "type": "Temp",
+      "link": "",
+      "description": "Empty"
+    },
+      {	
+      "id":3,
+      "name": "The Beautiful Bureaucrat",
+      "author": "Helen Phillips",
+      "cover": "https://offtheshelf.b-cdn.net/app/uploads/2019/07/The-Beautiful-Bureaucrat.jpg",
+      "topic": "Temp",
+      "section" : "Books",
+      "type": "Temp",
+      "link": "",
+      "description": "Empty"
+    },
+      {	
+      "id":4,
+      "name": "Squire",
+      "author": "Nadia Shammas ",
+      "cover": "https://i.harperapps.com/covers/9780062945853/x300.jpg",
+      "topic": "Temp",
+      "section" : "Books",
+      "type": "Temp",
+      "link": "",
+      "description": "Empty"
+    },
+    {	
+    "id":5,
+      "name": "The Monarchs",
+      "author": "Kass Morgan ",
+      "cover": "https://i.harperapps.com/covers/9780358098225/x300.jpg",
+      "topic": "Temp",
+      "section" : "Books",
+      "type": "Temp",
+      "link": "",
+      "description": "Empty"
+    },
+    {	
+    "id":6,
+      "name": "Geographers, astronomers and travellers of the Islamic world",
+      "author": "Ramíz Deníz",
+      "cover": "https://m.media-amazon.com/images/I/41zfBEpEWdS._SL500_.jpg",
+      "topic": "Temp",
+      "section" : "Books",
+      "type": "Temp",
+      "link": "",
+      "description": "Empty"
+    },
+    {	
+      "id":7,
+        "name": "Encounters with the Hidden Imam in Early and Pre-Modern Twelver Sh Islam",
+        "author": "Omid Ghaemmaghami",
+        "cover": "https://m.media-amazon.com/images/I/41+TmgciWnL._SL500_.jpg",
+        "topic": "Temp",
+        "section" : "Books",
+        "type": "Temp",
+        "link": "",
+        "description": "Empty"
+    },
+    {	
+        "id":8,
+          "name": "Muhammad and the Empires of Faith",
+          "author": "Sean W.Anthony",
+          "cover": "https://m.media-amazon.com/images/I/51WSAtZttiL._SL500_.jpg",
+          "topic": "Temp",
+          "section" : "Books",
+          "type": "Temp",
+          "link": "",
+          "description": "Empty"
+    },
+    {	
+    "id":9,
+      "name": "The Monarchs",
+      "author": "Kass Morgan ",
+      "cover": "https://i.harperapps.com/covers/9780358098225/x300.jpg",
+      "topic": "Temp",
+      "section" : "Books",
+      "type": "Temp",
+      "link": "",
+      "description": "Empty"
+    },
+    {	
+    "id":10,
+      "name": "Geographers, astronomers and travellers of the Islamic world",
+      "author": "Ramíz Deníz",
+      "cover": "https://m.media-amazon.com/images/I/41zfBEpEWdS._SL500_.jpg",
+      "topic": "Temp",
+      "section" : "Books",
+      "type": "Temp",
+      "link": "",
+      "description": "Empty"
+    },
+    {	
+    "id":11,
+      "name": "The Monarchs",
+      "author": "Kass Morgan ",
+      "cover": "https://i.harperapps.com/covers/9780358098225/x300.jpg",
+      "topic": "Temp",
+      "section" : "Books",
+      "type": "Temp",
+      "link": "",
+      "description": "Empty"
+    },
+    {	
+    "id":12,
+      "name": "Geographers, astronomers and travellers of the Islamic world",
+      "author": "Ramíz Deníz",
+      "cover": "https://m.media-amazon.com/images/I/41zfBEpEWdS._SL500_.jpg",
+      "topic": "Temp",
+      "section" : "Books",
+      "type": "Temp",
+      "link": "",
+      "description": "Empty"
+    }
+
+  ]
+}
