@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/adjacent-overload-signatures */
 import { Injectable, PipeTransform } from '@angular/core';
 
-import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject,throwError } from 'rxjs';
 
 import { Book } from '../models/book';
 import { DecimalPipe } from '@angular/common';
-import { debounceTime, delay, switchMap, tap } from 'rxjs/operators';
+import { debounceTime, delay, switchMap, tap,catchError ,map} from 'rxjs/operators';
 import { SortColumn, SortDirection } from './sortable.directive';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpErrorResponse, HttpHeaders  } from '@angular/common/http';
+
 const compare = (v1: string | number, v2: string | number) => (v1 < v2 ? -1 : v1 > v2 ? 1 : 0);
 
 function sort(books: Book[], column: SortColumn, direction: string): Book[] {
@@ -22,7 +23,6 @@ function sort(books: Book[], column: SortColumn, direction: string): Book[] {
 }
 
 function matches(book: Book, term: string) {
-	debugger
 	return (
 		book.name.toLowerCase().includes(term.toLowerCase()) ||
 		book.author.toLowerCase().includes(term.toLowerCase()) ||
@@ -40,7 +40,7 @@ export class BooksService {
 	private _search$ = new Subject<void>();
 	private _books$ = new BehaviorSubject<Book[]>([]);
 	private _total$ = new BehaviorSubject<number>(0);
-
+	
 	private _state: any = {
 		page: 1,
 		pageSize: 15,
@@ -49,7 +49,7 @@ export class BooksService {
 		sortDirection: '',
 	};
   constructor(private http: HttpClient,) {
-	
+		this.books$;
 		this._search$
 			.pipe(
 				tap(() => this._loading$.next(true)),
@@ -64,6 +64,19 @@ export class BooksService {
 			});
 
 		this._search$.next();
+	}
+	deletebook(id:number):Observable<any>{
+		return this.http.delete('http://localhost:3000/books/'+id);
+	}
+	addBook(data:any):Observable<any>
+	{
+		return this.http.post('http://localhost:3000/books',data);
+
+	}
+	updateBook(id:number,data:any):Observable<any>
+	{
+		return this.http.put(`http://localhost:3000/books/${id}`,data);
+
 	}
 
 	getBooks(): Observable<Book[]> {
@@ -121,7 +134,6 @@ export class BooksService {
 
 		// 1. sort
 		let countries = sort(this.books, sortColumn, sortDirection);
-		debugger
 		// 2. filter
 		countries = countries.filter((country) => matches(country, searchTerm));
 		const total = countries.length;
@@ -130,6 +142,7 @@ export class BooksService {
 		countries = countries.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
 		return of({ countries, total });
 	}
+	
 }
 
 

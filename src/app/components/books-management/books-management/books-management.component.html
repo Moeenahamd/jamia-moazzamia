@@ -17,9 +17,15 @@
                         </div>
                     </div>
                     <div class="basis-1/2 flex justify-end">
-                        <button class="rounded-md bg-gray-700 px-4 py-2 text-sm font-semibold text-gray-300 hover:text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-700" (click)="openPopUp(content)" >
+                        
+                          <button class="rounded-md bg-gray-700 px-4 py-2 text-sm font-semibold text-gray-300 hover:text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-700" (click)="openPopUp(content)" >
                             Add Book
                         </button>
+                        <!--input type="file" id="authorize_button"
+                        (change)="onfileselected($event)" accept="*.png.jpg" 
+                          id="signout_button"
+                      >
+                 <button type="button"  class="bg-neutral-50 hover:bg-neutral-800 text-neutral-800 font-semibold hover:text-gray-100 py-2 px-4 border border-grey hover:border-transparent rounded"  (click)="OnUpload()" >Upload</button-->
                     </div>
                     <span class="col col-form-label" *ngIf="service.loading$ | async">Loading...</span>
                 </div>
@@ -35,6 +41,7 @@
                             <th class="py-2 px-2 " sortable="Link">Link</th>
                             <th class="py-2 px-2 " sortable="Section">Section</th>
                             <th class="py-2 px-2 " sortable="Description">Description</th>
+                            <th  class="py-2 px-2"  sortable="Acyion">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,7 +54,28 @@
                             <td class="py-2 px-2 border border-slate-400"><ngb-highlight [result]="book.link" [term]="service.searchTerm"></ngb-highlight></td>
                             <td class="py-2 px-2 border border-slate-400"><ngb-highlight [result]="book.section" [term]="service.searchTerm"></ngb-highlight></td>
                             <td class="py-2 px-2 border border-slate-400"><ngb-highlight [result]="book.description" [term]="service.searchTerm"></ngb-highlight></td>
-                        </tr>
+                            <td class="py-2 px-2 border border-slate-400">
+                              <div class=" grid grid-cols-2">
+                              <button
+                              type="button" (click)="openeditform(content,book)"
+                              class="  pb-2 pt-2.5 text-xs font-medium leading-normal text-neutral-800  transition duration-150 ease-in-out hover:bg-neutral-100 hover:shadow-[0_8px_9px_-4px_rgba(203,203,203,0.3),0_4px_18px_0_rgba(203,203,203,0.2)] focus:bg-neutral-100 focus:shadow-[0_8px_9px_-4px_rgba(203,203,203,0.3),0_4px_18px_0_rgba(203,203,203,0.2)] focus:outline-none focus:ring-0 active:bg-neutral-200 active:shadow-[0_8px_9px_-4px_rgba(203,203,203,0.3),0_4px_18px_0_rgba(203,203,203,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(251,251,251,0.3)] dark:hover:shadow-[0_8px_9px_-4px_rgba(251,251,251,0.1),0_4px_18px_0_rgba(251,251,251,0.05)] dark:focus:shadow-[0_8px_9px_-4px_rgba(251,251,251,0.1),0_4px_18px_0_rgba(251,251,251,0.05)] dark:active:shadow-[0_8px_9px_-4px_rgba(251,251,251,0.1),0_4px_18px_0_rgba(251,251,251,0.05)]">
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                              </svg>
+                              
+                            </button>
+                             
+                            <button
+                              type="button" (click)="deletebook(book.id)"
+                              class="pb-2 pt-2.5 text-xs font-medium  leading-normal text-neutral-800 transition duration-150 ease-in-out hover:bg-neutral-100 hover:shadow-[0_8px_9px_-4px_rgba(203,203,203,0.3),0_4px_18px_0_rgba(203,203,203,0.2)] focus:bg-neutral-100 focus:shadow-[0_8px_9px_-4px_rgba(203,203,203,0.3),0_4px_18px_0_rgba(203,203,203,0.2)] focus:outline-none focus:ring-0 active:bg-neutral-200 active:shadow-[0_8px_9px_-4px_rgba(203,203,203,0.3),0_4px_18px_0_rgba(203,203,203,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(251,251,251,0.3)] dark:hover:shadow-[0_8px_9px_-4px_rgba(251,251,251,0.1),0_4px_18px_0_rgba(251,251,251,0.05)] dark:focus:shadow-[0_8px_9px_-4px_rgba(251,251,251,0.1),0_4px_18px_0_rgba(251,251,251,0.05)] dark:active:shadow-[0_8px_9px_-4px_rgba(251,251,251,0.1),0_4px_18px_0_rgba(251,251,251,0.05)]">
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                              </svg>
+                              
+                            </button>
+                          </div>
+                            </td>
+                          </tr>
                     </tbody>
                 </table>
 
@@ -66,14 +94,13 @@
         </div>
     </div>
 </main>
-
-
+<app-create-books></app-create-books>
 <ng-template #content let-modal>
 	<div class="modal-header">
 		<h4 class="modal-title" id="modal-basic-title">Create</h4>
         
 		
-            <button type="button" class=" text-neutral-800 py-2 px-2 border-1  hover:bg-neutral-800  hover:text-gray-100  focus:outline-none  font-medium rounded-lg text-sm  text-center inline-flex items-center dark:focus:ring-black mr-2 mb-2" (click)="modal.dismiss('Cross click')">
+            <button type="button" class=" text-neutral-800 py-2 px-2 border-1     focus:outline-none  font-medium rounded-lg text-sm  text-center inline-flex items-center dark:focus:ring-black mr-2 mb-2" (click)="modal.dismiss('Cross click')">
                 <svg class="w-4 h-4 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" >
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                   </svg>
@@ -83,26 +110,26 @@
         
 	</div>
 	<div class="modal-body">
-		<form>
+		<form [formGroup]="formValue" >
 			<div class="mb-3 flex items-stretch ">
 				
 				<div class="w-1/2 pr-7">
                     <label for="Type" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
-                    <input type="text" id="first_name" class=" border border-gray-300  w-full pr-16 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Name" required>
+                    <input type="text" id="name"  formControlName="name" class=" border border-gray-300  w-full pr-16 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Name" required>
                 </div>
-					<!--button class="btn btn-outline-secondary bi bi-calendar3" (click)="dp.toggle()" type="button"></button-->
+				
 				
                 <div class="w-1/2">
                     <label for="Type" class="block text-sm font-medium leading-6 text-gray-900">Author</label>
-                    <input type="text" id="first_name" class=" border border-gray-300 w-full pr-16 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Author" required>
+                    <input type="text" id="author" formControlName="author" class=" border border-gray-300 w-full pr-16 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Author" required>
                 </div>
-					<!--button class="btn btn-outline-secondary bi bi-calendar3" (click)="dp.toggle()" type="button"></button-->
+				
 			</div>
             <div class="flex mb-3 items-stretch">
             <div class="sm:col-span-3 w-1/2 pr-7">
                 <label for="Topic" class="block text-sm font-medium leading-6 text-gray-900">Topic</label>
                 <div class="mt-2">
-                  <select id="Topic" name="Topic" autocomplete="topic" class="block px-2  w-full rounded-md border border-gray-300  py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                  <select id="Topic" name="Topic" autocomplete="topic"  formControlName="topic" class="block px-2  w-full rounded-md border border-gray-300  py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                     <option>Temp</option>
                     <option>USD</option>
                   </select>
@@ -111,7 +138,7 @@
               <div class="sm:col-span-3 w-1/2 pr-7">
                 <label for="Type" class="block text-sm font-medium leading-6 text-gray-900">Type</label>
                 <div class="mt-2">
-                  <select id="Type" name="Type" autocomplete="type" class="block px-2  w-full rounded-md border border-gray-300  py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                  <select id="Type" name="Type" autocomplete="type"  formControlName="type" class="block px-2  w-full rounded-md border border-gray-300  py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                     <option>Temp</option>
                     <option>USD</option>
                   </select>
@@ -120,7 +147,7 @@
               <div class="sm:col-span-3 w-1/2">
                 <label for="Section" class="block text-sm font-medium leading-6 text-gray-900">Section</label>
                 <div class="mt-2">
-                  <select id="Section" name="Section" autocomplete="Section" class="block px-2  w-full rounded-md border border-gray-300  py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                  <select id="Section" name="Section" autocomplete="Section"  formControlName="section" class="block px-2  w-full rounded-md border border-gray-300  py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                     <option>Books</option>
                     <option>Books</option>
                   </select>
@@ -128,17 +155,26 @@
               </div>
             </div>
             <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-            <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900  rounded-lg border border-gray-300  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
-
+            <textarea id="message" rows="4" formControlName="description" class="block p-2.5 w-full text-sm text-gray-900  rounded-lg border border-gray-300  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
+            <input type="file" id="authorize_button" formControlName="cover"
+                  (change)="onfileselected($event)" accept="*.png.jpg" 
+                    id="signout_button"
+                   >
+           <!--button type="button"  class="bg-neutral-50 hover:bg-neutral-800 text-neutral-800 font-semibold hover:text-gray-100 py-2 px-4 border border-grey hover:border-transparent rounded"  (click)="OnUpload()" >Upload</button-->
+           
 		</form>
         
 	</div>
 	<div class="modal-footer">
-		
-        <button class="bg-neutral-50 hover:bg-neutral-800 text-neutral-800 font-semibold hover:text-gray-100 py-2 px-4 border border-grey hover:border-transparent rounded" (click)="modal.close('Save click')">
-            Save
+	    	<button type="button" class="bg-neutral-50 hover:bg-neutral-800 text-neutral-800 font-semibold hover:text-gray-100 py-2 px-4 border border-grey hover:border-transparent rounded" (click)="modal.dismiss('Cross click')" >
+            Cancel
           </button>
+        <button type="submit" class="bg-neutral-50 hover:bg-neutral-800 text-neutral-800 font-semibold hover:text-gray-100 py-2 px-4 border border-grey hover:border-transparent rounded" (click)="OnUpload()" >
+           {{editmode?"Update":"Add"}}
+          </button>
+         
 	</div>
     
-      
+  
+       
 </ng-template>

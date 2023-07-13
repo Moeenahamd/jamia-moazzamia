@@ -12,7 +12,7 @@ import { AboutComponent } from './components/about/about.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterComponent } from './layouts/footer/footer/footer.component';
 import { BooksManagementComponent } from './components/books-management/books-management/books-management.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MHussainCampusComponent } from './components/m.hussain-campus/m.hussain-campus.component';
 import { AlSadeedCampusComponent } from './components/al-sadeed-campus/al-sadeed-campus.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,6 +20,11 @@ import { MoazzamCollegeComponent } from './components/moazzam-college/moazzam-co
 import { LibraryComponent } from './components/library/library.component';
 import { DirectionSchoolComponent } from './components/direction-school/direction-school.component';
 import { BookDetailsComponent } from './components/books/book-details/book-details.component';
+import { CreateBooksComponent } from './components/books-management/books-management/create-books/create-books.component';
+import {AngularFireModule} from "@angular/fire/compat";
+import {AngularFireStorageModule} from "@angular/fire/compat/storage";
+
+
 
 
 @NgModule({
@@ -39,7 +44,11 @@ import { BookDetailsComponent } from './components/books/book-details/book-detai
     MoazzamCollegeComponent,
     LibraryComponent,
     DirectionSchoolComponent,
-    BookDetailsComponent
+    BookDetailsComponent,
+    CreateBooksComponent
+  
+   
+  
     
   ],
   imports: [
@@ -47,7 +56,18 @@ import { BookDetailsComponent } from './components/books/book-details/book-detai
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyBZ7R3FTuDGXqeAftQO6oECPczGOw8IFHY",
+    authDomain: "jamiamoazzamia-39f9a.firebaseapp.com",
+    projectId: "jamiamoazzamia-39f9a",
+    storageBucket: "jamiamoazzamia-39f9a.appspot.com",
+    messagingSenderId: "1096737869786",
+    appId: "1:1096737869786:web:2e8530b557a64e64317ae3",
+    measurementId: "G-EBQZ55QS97"
+    }),
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
