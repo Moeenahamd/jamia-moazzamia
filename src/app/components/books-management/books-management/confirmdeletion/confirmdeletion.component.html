@@ -1,0 +1,36 @@
+<div >
+  
+    
+        <div class="grid grid-cols-2">
+            <h1 mat-dialog-title>
+        <p>Confirmation</p>  
+    </h1>
+    <div mat-dialog-actions align="end">
+        <button type="button" class=" text-neutral-800 py-2 px-2 hover:bg-gray-100 hover:border-1 focus:outline-none  font-medium rounded-lg text-sm  text-center inline-flex items-center dark:focus:ring-black mr-2 " [mat-dialog-close]="true" >
+            <svg class="w-4 h-4 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            
+          </button>  
+        </div> 
+    </div>
+    
+    <div mat-dialog-content>
+      <p> Are you sure to delete this?</p>
+    </div>
+    
+    <div mat-dialog-actions>
+     
+      
+      <button (click)="onConfirm()" class="bg-neutral-50 hover:bg-gray-100 text-neutral-800 font-semibold hover:text-gray-700 py-2.5 mr-2 px-4 border border-grey hover:border-transparent rounded" [mat-dialog-close]="true">
+        Yes
+      </button>
+      <button  class="bg-neutral-50 hover:bg-gray-100 text-neutral-800 font-semibold hover:text-gray-700 py-2.5 mr-2 px-4 border border-grey hover:border-transparent rounded" [mat-dialog-close]="true">
+        No
+      </button>
+   
+   
+  
+
+</div> 
+</div>

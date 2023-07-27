@@ -1,0 +1,15 @@
+button.btn[disabled] {   background:rgb(225, 225, 225);
+                         color:rgb(141, 141, 141);
+                        border: none;}
+button.btn:enabled {
+    background: rgb(55, 65, 81);
+    color:whitesmoke ;
+  }
+  button.btn:enabled:hover{
+    background: black;
+    color:white ;
+  }
+  .py-10 {
+    padding-top: 1.5px;
+    padding-bottom: 1px;
+}

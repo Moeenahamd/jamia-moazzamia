@@ -5,11 +5,11 @@ import { BooksService } from 'src/app/services/books.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-book-details',
-  templateUrl: './book-details.component.html',
-  styleUrls: ['./book-details.component.css']
+  selector: 'app-detail',
+  templateUrl: './detail.component.html',
+  styleUrls: ['./detail.component.css']
 })
-export class BookDetailsComponent implements OnInit{
+export class DetailComponent  implements OnInit{
   id:any;
   book:any;
   //book:{Id:number,Name:string};

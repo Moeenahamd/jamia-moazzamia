@@ -8,14 +8,14 @@ import { BooksService } from 'src/app/services/books.service';
 })
 export class BooksComponent implements OnInit{
   books: Book[] = [];
-  constructor(private booService: BooksService){}
+  constructor(private bookService: BooksService){}
 
   ngOnInit(): void {
     this.getBooks();
   }
 
   getBooks(){
-    this.booService.getBooks().subscribe((res:any)=>{
+    this.bookService.getBooks().subscribe((res:any)=>{
       this.books = res;
     })
   }

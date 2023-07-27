@@ -1,0 +1,31 @@
+<div class=" grid justify-items-center items-center bg-gray-100 h-screen">
+    
+<div class="w-full max-w-xs">
+    <p class="text-center font-bold text-2xl tracking-wide text-gray-800 ">
+        Login to your account
+      </p>
+    <form [formGroup]="formValue" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-8">
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium text-sm  mb-2" for="name">
+          User name
+        </label>
+        <input id="name" formControlName="name" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none " type="text" placeholder="Username">
+        <span style="color: red;" *ngIf="name && name.invalid && name.touched">Please enter name</span>
+    </div>
+      <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-medium mb-2" for="password">
+          Password
+        </label>
+        <input  formControlName="password"  class="appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">
+        <span style="color: red;" *ngIf="password && password.invalid && password.touched">please enter password</span>
+      </div>
+     
+      <div class="grid justify-items-center ">
+        <button [disabled]="formValue.invalid" class="btn1 w-full  bg-gray-700 hover:bg-gray-900 text-gray-100 font-medium py-1 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" (click)="click()" >
+            Log In
+          </button>
+      </div>
+    </form>
+    
+  </div>
+</div>

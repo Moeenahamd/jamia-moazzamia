@@ -6,6 +6,6 @@ export interface Book {
 	topic: string;
 	type: string;
 	link: string;
-	section: string;
+	
 	description: string;
 }
