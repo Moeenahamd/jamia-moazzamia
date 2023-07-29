@@ -14,6 +14,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { map, finalize } from "rxjs/operators";
 import { CreateBooksComponent } from './create-books/create-books.component';
 import { ConfirmdeletionComponent } from './confirmdeletion/confirmdeletion.component';
+import { ToastrService } from 'ngx-toastr';
 
 const ELEMENT_DATA: Book[] = [
 	{name: '', cover: 'Hydrogen', link: '', author: 'H', type: '',description:'',topic:'',id:0},
@@ -52,7 +53,7 @@ export class BooksManagementComponent implements AfterViewInit, OnInit {
         { field: 'Option 3' }
     ];
 
-  	constructor(public service:BooksService,private modalService: NgbModal,private dialog:MatDialog,private formbuilder:FormBuilder,private http:HttpClient,private af:AngularFireStorage,){
+  	constructor(public service:BooksService,private toastr: ToastrService,private dialog:MatDialog,private formbuilder:FormBuilder,private http:HttpClient,private af:AngularFireStorage,){
 
   	}
 	  ngAfterViewInit() {
@@ -70,63 +71,48 @@ export class BooksManagementComponent implements AfterViewInit, OnInit {
 	  }
 	   
 	ngOnInit(): void {
-		
-		
 		this.getBooks();
 	}
 	
-	
 	getBooks(){
 		this.service.getBooks().subscribe((res:any)=>{
-			this.books = res;
-			this.dataSource.data = this.books
+			this.books = res.payload;
+			this.dataSource.data = this.books;
+			this.toastr.success(res.message)
 		})
 	}
-	
 	
 	openPopup(){
 		this.dialog.open(CreateBooksComponent,{
 			width:'60%',
 			height:''
 		}).afterClosed().subscribe(val=>{
-			
-				this.getBooks();
+			this.getBooks();
 			
 		})
-		
 	}
 	
 	deletebook(id:number){
 		this.deleteBookId = id;
 		this.dialog.open(ConfirmdeletionComponent,{width:'30%',
-		height:'',
-	}).afterClosed().subscribe(val=>{
-			
-		this.getBooks();
-	
-})
+			height:'',
+		}).afterClosed().subscribe(val=>{
+			this.deletion();
+		})
 		
 	}
 	deletion(){
-		this.service.deletebook(this.deleteBookId).subscribe({
-			next:(res)=>{
-				//alert('book deleted');
-				this.getBooks();
-				
-			}
+		this.service.deletebook(this.deleteBookId).subscribe((res:any)=>{
+			this.toastr.success("Book deleted successfully")
+			this.getBooks();
 		})
 	}
 
 	openeditform(book:any){
-
 		this.dialog.open(CreateBooksComponent, {width:'60%',
 		height:'',
 		data:book }).afterClosed().subscribe(val=>{
-			
-				this.getBooks();
-			
+			this.getBooks();
 		})
 	}
-	
-	
 }

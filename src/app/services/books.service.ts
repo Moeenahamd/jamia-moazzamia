@@ -8,20 +8,20 @@ import { Observable } from 'rxjs';
 })
 export class BooksService {
 	books:Book[] = [];
-	private baseUrl = 'http://167.71.24.110:3000';
+	private baseUrl = 'http://khanqahemoazzmia.com/:3000';
 
   	constructor(private http: HttpClient) {}
 
 	deletebook(id:number):Observable<any>{
-		return this.http.delete('/books/'+id);
+		return this.http.delete(this.baseUrl +'/books/'+id);
 	}
 
 	addBook(data:any):Observable<any>{
-		return this.http.post('/books',data);
+		return this.http.post(this.baseUrl +'/books',data);
 	}
 
 	updateBook(id:number,data:any):Observable<any>{
-		return this.http.put(`/books/${id}`,data);
+		return this.http.put(this.baseUrl +`/books/${id}`,data);
 	}
 
 	getBooks(): Observable<Book[]> {

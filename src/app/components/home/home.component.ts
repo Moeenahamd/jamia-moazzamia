@@ -12,6 +12,7 @@ export class HomeComponent {
     "assets/images/img1.png",
     "assets/images/img2.png",
     "assets/images/img3.png",
+    "assets/images/img4.jpg",
    
 ];
   img1="assets/images/img1.png"

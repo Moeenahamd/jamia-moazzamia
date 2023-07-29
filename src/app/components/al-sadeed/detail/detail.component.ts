@@ -24,7 +24,7 @@ export class DetailComponent  implements OnInit{
   getBokkById(id:number)
   { 
     this.bookservice.getBookById(id).subscribe((res:any)=>{
-    this.book=res;
+    this.book=res.payload[0];
    })
 
   }

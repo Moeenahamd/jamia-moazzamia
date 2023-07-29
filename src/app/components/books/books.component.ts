@@ -16,7 +16,9 @@ export class BooksComponent implements OnInit{
 
   getBooks(){
     this.bookService.getBooks().subscribe((res:any)=>{
-      this.books = res;
+      if(res.status == 200){
+        this.books = res.payload;
+      }
     })
   }
 }

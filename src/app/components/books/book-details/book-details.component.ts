@@ -12,7 +12,6 @@ import { HttpClient } from '@angular/common/http';
 export class BookDetailsComponent implements OnInit{
   id:any;
   book:any;
-  //book:{Id:number,Name:string};
   constructor(private activatedroute:ActivatedRoute,private router:Router,private bookservice:BooksService,private http:HttpClient)
   { }
 
@@ -24,10 +23,7 @@ export class BookDetailsComponent implements OnInit{
   getBokkById(id:number)
   { 
     this.bookservice.getBookById(id).subscribe((res:any)=>{
-    this.book=res;
+      this.book=res.payload[0];
    })
-
   }
-
-
 }

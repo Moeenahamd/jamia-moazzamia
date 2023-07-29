@@ -73,18 +73,22 @@ export class CreateBooksComponent implements OnInit {
       if(this.formValue.value){
         if(!this.editdata) {
           this.service.addBook(payload).subscribe(res=>{
-            this.Showsucess();
-            this.formValue.reset();
-            this.isDisabled = false;
-            this.dialogRef.close();
+            if(res.status == 200){
+              this.toastr.success(res.message)
+              this.formValue.reset();
+              this.isDisabled = false;
+              this.dialogRef.close();
+            }
           })
         }
         else{
           this.service.updateBook(this.editdata.id,payload).subscribe(res=>{
-          this.Sucess();
-            this.formValue.reset();
-            this.isDisabled = false;
-            this.dialogRef.close();
+            if(res.status == 200){
+              this.toastr.success(res.message)
+              this.formValue.reset();
+              this.isDisabled = false;
+              this.dialogRef.close();
+            }
           })
         }
       }
