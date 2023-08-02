@@ -13,8 +13,9 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog} from '@angular/material/dialog';
 import { map, finalize } from "rxjs/operators";
 import { CreateBooksComponent } from './create-books/create-books.component';
-import { ConfirmdeletionComponent } from './confirmdeletion/confirmdeletion.component';
+
 import { ToastrService } from 'ngx-toastr';
+import { ConfirmationComponent } from '../../confirmation/confirmation.component';
 
 const ELEMENT_DATA: Book[] = [
 	{name: '', cover: 'Hydrogen', link: '', author: 'H', type: '',description:'',topic:'',id:0},
@@ -78,7 +79,6 @@ export class BooksManagementComponent implements AfterViewInit, OnInit {
 		this.service.getBooks().subscribe((res:any)=>{
 			this.books = res.payload;
 			this.dataSource.data = this.books;
-			this.toastr.success(res.message)
 		})
 	}
 	
@@ -92,15 +92,35 @@ export class BooksManagementComponent implements AfterViewInit, OnInit {
 		})
 	}
 	
-	deletebook(id:number){
+	/*deletebook(id:number){
 		this.deleteBookId = id;
-		this.dialog.open(ConfirmdeletionComponent,{width:'30%',
+		this.dialog.open(ConfirmationComponent,{width:'30%',
 			height:'',
 		}).afterClosed().subscribe(val=>{
-			this.deletion();
+			if(val == "true"){
+				this.deletion();
+			}
+		})
+		
+	}*/
+	deletebook(id:number){
+		this.deleteBookId = id;
+		this.dialog.open(ConfirmationComponent,{width:'30%',
+			height:'',
+			data:{
+				message: 'Are you sure want to delete?',
+				  delete: 'Delete',
+				  cancel: 'Cancel'
+				
+			  }
+		}).afterClosed().subscribe(val=>{
+			if(val == "true"){
+				this.deletion();
+			}
 		})
 		
 	}
+
 	deletion(){
 		this.service.deletebook(this.deleteBookId).subscribe((res:any)=>{
 			this.toastr.success("Book deleted successfully")

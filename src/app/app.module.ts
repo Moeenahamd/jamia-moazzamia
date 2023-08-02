@@ -35,7 +35,8 @@ import { timeout } from 'rxjs';
 import { LoginComponent } from './components/login/login.component';
 import { DetailComponent } from './components/al-sadeed/detail/detail.component';
 import { AuthGuard } from './services/auth.guard';
-import { ConfirmdeletionComponent } from './components/books-management/books-management/confirmdeletion/confirmdeletion.component';
+import { ConfirmationComponent } from './components/confirmation/confirmation.component';
+
 
 
 
@@ -58,7 +59,8 @@ import { ConfirmdeletionComponent } from './components/books-management/books-ma
     CreateBooksComponent,
     LoginComponent,
     DetailComponent,
-    ConfirmdeletionComponent,
+    ConfirmationComponent,
+   
     
   
    
@@ -92,10 +94,11 @@ import { ConfirmdeletionComponent } from './components/books-management/books-ma
     MatDialogModule,
     ToastrModule.forRoot({timeOut:1000,
     progressBar:true,
-  progressAnimation:'increasing'}), 
+    progressAnimation:'increasing'}), 
     CommonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    
   ],
    
    providers: [AuthGuard], 

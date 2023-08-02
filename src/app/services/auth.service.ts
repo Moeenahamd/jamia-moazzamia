@@ -5,12 +5,15 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  apiurl='http://localhost:4200/login';
+ // apiurl='http://localhost:4200/login';
   constructor(private http:HttpClient) { }
-  click(user:any){
+ /* click(user:any){
 return this.http.post(this.apiurl,user)
+  }*/
+  validateuser(username:any,password:any){
+    return true;
   }
-  isLogedin(){
+  /*isLogedin(){
     return localStorage.getItem('token');
-  }
+  }*/
 }

@@ -2,14 +2,14 @@
 import { Injectable} from '@angular/core';
 import { Book } from '../models/book';
 import { HttpClient} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class BooksService {
 	books:Book[] = [];
-	private baseUrl = 'http://khanqahemoazzmia.com/:3000';
-
+	private baseUrl = 'http://khanqahemoazzmia.com:3000';
+	//isLogedIn=new Subject<boolean>();
   	constructor(private http: HttpClient) {}
 
 	deletebook(id:number):Observable<any>{

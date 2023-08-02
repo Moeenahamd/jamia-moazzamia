@@ -22,7 +22,7 @@ const routes: Routes = [
   {path: 'about', component:AboutComponent},
   {path: 'books', component:BooksComponent},
   {path: 'books/:Id', component:BookDetailsComponent},
-  {path: 'books-management', component:BooksManagementComponent},
+  {path: 'books-management', component:BooksManagementComponent,canActivate:[AuthGuard]},
   {path: 'contact', component:ContactComponent},
   {path: 'al-sadeed', component:AlSadeedComponent},
  

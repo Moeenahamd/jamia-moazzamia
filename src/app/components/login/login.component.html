@@ -1,10 +1,23 @@
-<div class=" grid justify-items-center items-center bg-gray-100 h-screen">
+<div class=" grid justify-items-center w-full  ">   
+<div class="w-11/12   mt-8  ">
+  <div class="flow-root pb-2 border-b border-gray-300  ">
     
-<div class="w-full max-w-xs">
-    <p class="text-center font-bold text-2xl tracking-wide text-gray-800 ">
+    <div class="float-left sm:text-center ">
+    <p class=" font-semibold text-lg  text-gray-800  ">
         Login to your account
       </p>
-    <form [formGroup]="formValue" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-8">
+    </div>
+  <div class="float-right  ">
+      <button  type="button" class=" text-neutral-800 py-2 px-2 hover:bg-gray-100 hover:border-1 focus:outline-none  font-medium rounded-lg text-sm  text-center inline-flex items-center dark:focus:ring-black " [mat-dialog-close]="true" >
+        <svg class="w-4 h-4 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+   
+      
+      </button>
+    </div>
+    </div>
+    <form [formGroup]="formValue" class="bg-white px-1 pt-6 pb-8 mb-4  border-b border-gray-300">
       <div class="mb-4">
         <label class="block text-gray-700 font-medium text-sm  mb-2" for="name">
           User name
@@ -20,12 +33,22 @@
         <span style="color: red;" *ngIf="password && password.invalid && password.touched">please enter password</span>
       </div>
      
-      <div class="grid justify-items-center ">
-        <button [disabled]="formValue.invalid" class="btn1 w-full  bg-gray-700 hover:bg-gray-900 text-gray-100 font-medium py-1 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" (click)="click()" >
-            Log In
-          </button>
-      </div>
+    
     </form>
+    <div class=" float-right ">
+      <!--button [disabled]="formValue.invalid" class="btn1 w-full  bg-gray-700 hover:bg-gray-900 text-gray-100 font-medium py-1 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" (click)="click()" >
+          Log In
+        </button-->
+        <button  class=" inline-block bg-neutral-50 hover:bg-gray-100 text-neutral-800 font-semibold hover:text-gray-700 py-2.5 mr-2 px-4 border border-grey hover:border-transparent rounded" [mat-dialog-close]="true">
+          Cancel
+        </button>
+        <button  type="submit" [disabled]="formValue.invalid"    class=" btn1  bg-gray-700 inline-block  font-semibold bg-gray-700 hover:bg-gray-900 text-gray-100 font-medium py-2 px-4 rounded focus:outline-none focus:shadow-outline"  (click)="click()">
+          Log In
+        </button>
+    </div>
     
   </div>
 </div>
+
+
+

@@ -27,8 +27,8 @@ export class CreateBooksComponent implements OnInit {
  action:boolean=true;
   isDisabled:any;
   
-  constructor(public service:BooksService,private af:AngularFireStorage,private formbuilder:FormBuilder,private http:HttpClient,private toastr: ToastrService,private dialogRef:MatDialogRef<CreateBooksComponent>,
-    @Inject(MAT_DIALOG_DATA) public editdata:any){
+  constructor(private service:BooksService,private af:AngularFireStorage,private formbuilder:FormBuilder,private http:HttpClient,private toastr: ToastrService,private dialogRef:MatDialogRef<CreateBooksComponent>,
+    @Inject(MAT_DIALOG_DATA) private editdata:any){
 }
     ngOnInit(): void {
       this.formValue=this.formbuilder.group({

@@ -1,8 +1,8 @@
-<div class="">
-    <nav class="bg-gray-800 w-full relative">
+
+    <nav class="bg-gray-800 min-w-screen relative">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8  ">
-        <div class="flex h-16 items-center justify-between">
-          <div class="flex items-center">
+        <div class="flex h-16 items-center justify-between ">
+          <div class="flex items-center ">
             <div class="flex-shrink-0">
               <img class="h-8 w-8" src="../../../assets/images/logo.PNG" alt="Your Company">
             </div>
@@ -32,13 +32,12 @@
                 </div >
                 
                 <a routerLink="/books" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Books</a>
-                <a routerLink="/books-management" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Books Management</a>
+                <a routerLink="/books-management" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" *ngIf="isLogedIn">Books Management</a>
                 <a routerLink="/al-sadeed" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Al-Sadeed</a>
                 <a routerLink="/contact" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Contact Us</a>
                 <a routerLink="/about" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">About Us</a>
-              
-                <!-- <a routerLink="/login" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium absolute top-3 right-16 ">Login</a>
-                <a routerLink="/login" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium absolute top-3 right-0 " (click)="logout()">Logout</a> -->
+                <a class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium absolute top-3 right-0 " *ngIf="!isLogedIn" (click)="login()">Login</a>
+                <a *ngIf="isLogedIn" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium absolute top-3 right-0  sm:ml-4 " (click)="confirmation()">Logout</a> 
               </div>
             </div>
           </div>
@@ -77,5 +76,5 @@
         </div>
       </div>
     </nav>
-  </div>
+  
   
