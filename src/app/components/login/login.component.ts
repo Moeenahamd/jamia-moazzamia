@@ -4,7 +4,9 @@ import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { BooksService } from 'src/app/services/books.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import { ConfirmationComponent } from '../confirmation/confirmation.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +15,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class LoginComponent implements OnInit{
   formValue !:FormGroup;
   response:any;
-  constructor(private formbuilder:FormBuilder,private service:AuthService,private router:Router,private login:BooksService,private dialogRef:MatDialogRef<LoginComponent>,
+  
+  constructor(private formbuilder:FormBuilder,private dialog:MatDialog,private toastr: ToastrService,private service:AuthService,private router:Router,private login:BooksService,private dialogRef:MatDialogRef<LoginComponent>,
     ){}
   ngOnInit(): void {
     this.formValue=this.formbuilder.group({
@@ -39,7 +42,7 @@ export class LoginComponent implements OnInit{
    */
   
   this.valid();
-  this.dialogRef.close();
+  //this.dialogRef.close();
   
   // this.login.isLogedIn.next(true);
   }
@@ -59,15 +62,29 @@ export class LoginComponent implements OnInit{
   }
   valid(){
     var res=this.service.validateuser(this.formValue.value['name'],this.formValue.value['password']);
-    if(res)
+    if(res && this.formValue.value['name']=="khanqahemoazzamia" && this.formValue.value['password']=="admin@123")
     {
       console.log(res);
       this.router.navigate(["books-management"])
-      localStorage.setItem("name",this.formValue.value['name']);
-      localStorage.setItem("password",this.formValue.value['password']);
+      localStorage.setItem('isLoggedIn',JSON.stringify(true));
+      //localStorage.setItem("password",this.formValue.value['password']);
+      this.toastr.success("Login successfully");
+      this.dialogRef.close();
     }
     else{
-      alert("Invalid");
+      //alert("Invalid");
+      this.toastr.error("Login fail")
+      this.dialog.open(ConfirmationComponent,{width:'30%',
+			height:'',
+			data:{
+        heading:'Login Failed',
+				message: 'Please enter valid input',
+				  delete: 'OK',
+				  cancel: 'Cancel'
+				
+			  }
+		})
+      
       
     }
   }

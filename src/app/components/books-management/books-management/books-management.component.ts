@@ -108,7 +108,8 @@ export class BooksManagementComponent implements AfterViewInit, OnInit {
 		this.dialog.open(ConfirmationComponent,{width:'30%',
 			height:'',
 			data:{
-				message: 'Are you sure want to delete?',
+				heading:'Confirmation',
+				message: 'Are you sure you want to delete?',
 				  delete: 'Delete',
 				  cancel: 'Cancel'
 				

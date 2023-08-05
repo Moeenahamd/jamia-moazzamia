@@ -1,10 +1,9 @@
-
-<div class="grid grid-cols-2 border-b p-0 border-gray-300">
+<div class="grid grid-cols-2 border-b border-gray-300 h-14 pt-0 ">
 <h1 mat-dialog-title *ngIf="action">Create Book</h1>
 <h1 mat-dialog-title *ngIf="!action">Edit Book</h1>
 <div mat-dialog-actions align="end">
 
-  <button type="button" class=" text-neutral-800 py-2 px-2 hover:bg-gray-100 hover:border-1 focus:outline-none  font-medium rounded-lg text-sm  text-center inline-flex items-center dark:focus:ring-black mr-2 " [mat-dialog-close]="true" >
+  <button type="button" class=" text-neutral-800 py-2 px-2 hover:bg-gray-100 hover:border-1 focus:outline-none  font-medium rounded-lg text-sm  text-center  dark:focus:ring-black mr-2 " [mat-dialog-close]="true" >
     <svg class="w-4 h-4 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" >
         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
       </svg>
@@ -14,16 +13,13 @@
 </div>
 <div mat-dialog-content>
   <form [formGroup]="formValue" >
-    <div class=" flex items-stretch ">
-      
+    <div class=" flex mb-3 items-stretch ">
       <div class="w-1/2 pr-7">
                   <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
                   <input type="text" id="name"  formControlName="name" class=" border border-gray-300  w-full pr-16 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Name"  >
                 
                 <span style="color: red;" *ngIf="name && name.invalid && name.touched">Please enter name</span>
                 </div>
-      
-      
               <div class="w-1/2">
                   <label for="author" class="block text-sm font-medium leading-6 text-gray-900">Author</label>
                   <input type="text" id="author" formControlName="author" class=" border border-gray-300 w-full pr-16 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Author" >

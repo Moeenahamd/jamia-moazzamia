@@ -1,0 +1,13 @@
+.p{
+    padding-top: 60px;
+    padding-bottom: 60px;
+    
+}
+.btn{
+    background: rgb(55, 65, 81);
+    color:whitesmoke ;
+}
+.btn:hover{
+    background: black;
+    color:white ;
+}

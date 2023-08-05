@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ConfirmationComponent } from 'src/app/components/confirmation/confirmation.component';
 import { LoginComponent } from 'src/app/components/login/login.component';
 import { BooksService } from 'src/app/services/books.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-header',
@@ -15,9 +16,9 @@ export class HeaderComponent implements OnInit{
   dropDownMenu = false;
   isLogedIn:Boolean=false;
   
-  constructor(private service:BooksService,private dialog:MatDialog,private router:Router){}
+  constructor(private service:BooksService,private dialog:MatDialog,private toastr: ToastrService,private router:Router){}
   ngOnInit(): void {
-    if(localStorage.getItem("name")==null&& localStorage.getItem("password")==null)
+    if(localStorage.getItem("isLoggedIn")==null)
       {
         this.isLogedIn=false;
       }
@@ -27,14 +28,14 @@ export class HeaderComponent implements OnInit{
   }
   login(){
     this.dialog.open(LoginComponent,{
-			width:'30%',
-			height:'68%'
+			width:'30%'
 		}).afterClosed().subscribe(val=>{
-      if(localStorage.getItem("name")==null&& localStorage.getItem("password")==null)
+      if(localStorage.getItem("isLoggedIn")==null)
       {
 			this.isLogedIn=false;
       }
       else{
+        
         this.isLogedIn=true;
         this.router.navigate(['home']);
       }
@@ -46,7 +47,8 @@ export class HeaderComponent implements OnInit{
 		this.dialog.open(ConfirmationComponent,{width:'30%',
 			height:'',
 			data:{
-				message: 'Are you sure want to Logout?',
+        heading:'Confirmation',
+				message: 'Are you sure you want to Logout?',
 				  delete: 'logout',
 				  cancel: 'Cancel'
 			  }
@@ -59,6 +61,7 @@ export class HeaderComponent implements OnInit{
 	}
   logout(){
     localStorage.clear();
+    this.toastr.success("Logout successfully");
     this.router.navigate(['home']);
     this.isLogedIn=false;
 

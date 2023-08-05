@@ -153,12 +153,7 @@ export class CreateBooksComponent implements OnInit {
 	}
 
 
-  Showsucess(){
-    this.toastr.success('Book added sucessfully');
-  }
-  Sucess(){
-    this.toastr.success('Book edited sucessfully');
-  }
+
   get name()
   {
     return this.formValue.get('name');
