@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit{
     }
     else{
       //alert("Invalid");
-      this.toastr.error("Login fail") 
+      this.toastr.error("Username or Password incorrect") 
     }
   }
 }
