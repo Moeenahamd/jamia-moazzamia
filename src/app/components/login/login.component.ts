@@ -73,19 +73,7 @@ export class LoginComponent implements OnInit{
     }
     else{
       //alert("Invalid");
-      this.toastr.error("Login fail")
-      this.dialog.open(ConfirmationComponent,{width:'30%',
-			height:'',
-			data:{
-        heading:'Login Failed',
-				message: 'Please enter valid input',
-				  delete: 'OK',
-				  cancel: 'Cancel'
-				
-			  }
-		})
-      
-      
+      this.toastr.error("Login fail") 
     }
   }
 }
