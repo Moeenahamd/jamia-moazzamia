@@ -1,0 +1,27 @@
+
+
+<header class="bg-white shadow">
+    <div class="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Book Detail</h1>
+    </div>
+</header>
+<main >
+    <div class="container flex py-10 mx-auto flex-wrap  h-screen ">
+        <div class="  w-full lg:w-6/12 order-first p-5 sm:w-full md:w-full xl:w-6/12" >
+            <img src="{{book.cover}}" class="relative w-full h-3/5  rounded-lg " alt="hidden" />
+        </div>
+        <div class="lg:w-6/12 order-last p-5 " data-aos="fade-right " data-aos-duration="1000">
+            <h1 class="font-bold text-3xl text-black"> {{book.name}}</h1>
+            <div class="text-gray-500 text-lg font-bold pt-2">Author: {{book.author}}</div>  
+            <div class="text-gray-500 text-lg font-bold">Topic: {{book.topic}}</div>   
+            <div class="text-gray-900 text-lg font-bold pt-4">Description:</div>  
+            <p class="pt-1 text-md">
+               {{book.description}}
+            </p>
+           
+            <a *ngIf="book.link" [href]="book.link" class=" mt-4 bg-gray-900 px-4 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-700" download>
+                Download Book
+            </a>
+        </div>
+    </div>
+</main>
